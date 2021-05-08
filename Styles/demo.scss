@@ -1,0 +1,99 @@
+@import "reset";
+@import "variables";
+
+$colors: (color1: red, color2: green, color3: blue);
+
+@each $key, $color in $colors {
+  .#{$color}-text {
+    color: $color;
+  }
+}
+
+// --------------------
+
+@each $color in red, green, blue {
+  .#{$color}-text {color: $color};
+}
+
+@mixin setFontSize($value) {
+  @if $value == small {
+    font-size: 12px;
+  }
+  @else if $value == medium {
+    font-size: 16px;
+  }
+  @else if $value == large {
+    font-size: 20px;
+  }
+  @else {
+    font-size: none;
+  }
+}
+
+header {
+  background: $header-bgcolor;
+}
+
+
+.btn{
+  border: none;
+  padding: 15px 30px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-download{
+  @extend .btn;
+  background: red;
+}
+
+.learn-more {
+  @extend .btn;
+}
+
+@mixin para-style($size, $style) {
+  font-size: $size;
+  text-align: $style;
+  margin: 10px 0px;
+}
+
+#about p {
+  @include para-style(18px, left);
+}
+
+#education p {
+  @include para-style(16px, justify);
+}
+
+// nav styling
+nav {
+  margin-top: 15px;
+  ul {
+    list-style-type: none;
+    li {
+      display: inline-block;
+      margin: 0 15px;
+      a {
+        display: inline-block;
+        color: white;
+        text-transform: none;
+        padding: 10px;
+        transition: 0.4s;
+        border-radius: 5px;
+        @include setFontSize(large)
+      }
+      a:hover {
+        background: black;
+      }
+    }
+  }
+}
+
+main {
+  background: $main-bgcolor;
+}
+
+footer {
+  background: $footer-bgcolor;
+}
